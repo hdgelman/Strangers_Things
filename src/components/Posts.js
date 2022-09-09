@@ -7,12 +7,12 @@ const Posts = () => {
     useEffect(() => {
         const apiRequest = async () => {
             const response = await fetch('https://strangers-things.herokuapp.com/api/2208-FTB-ET-WEB-FT/posts');
-            const data = await result.json();
+            const data = await response.json();
             setUserPosts(data.data.posts)
             console.log(data)
         }
-        apiRequest()
 
+        apiRequest()
     }, [])
     return (
         <>

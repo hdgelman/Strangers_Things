@@ -9,6 +9,7 @@ const Login = (props) => {
         event.preventDefault();
         const userName = fData.get("username");
         const password = fData.get("password");
+        console.log(fData)
         const confirmPassword = fData.get("confirmPassword");
         fetch(`https://strangers-things.herokuapp.com/api/2208-FTB-ET-WEB-FT/users/${isLogIn ? "login" : "register"}`, {
             method: "POST",
