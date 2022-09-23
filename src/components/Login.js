@@ -5,12 +5,12 @@ const Login = (props) => {
     const isLogIn = props.isLogIn;
     const setToken = props.setToken;
     const onSubmit = (event) => {
-        const fData = new FormData(event.target);
+        const formData = new FormData(event.target);
         event.preventDefault();
-        const userName = fData.get("username");
-        const password = fData.get("password");
-        console.log(fData)
-        const confirmPassword = fData.get("confirmPassword");
+        const userName = formData.get("username");
+        const password = formData.get("password");
+        console.log(formData)
+        const confirmPassword = formData.get("confirmPassword");
         fetch(`https://strangers-things.herokuapp.com/api/2208-FTB-ET-WEB-FT/users/${isLogIn ? "login" : "register"}`, {
             method: "POST",
             headers: {
