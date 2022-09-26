@@ -1,83 +1,41 @@
 import React, { useState } from "react";
 
-const Login = (props) => {
-    const [error, setError] = useState();
-    const isLogIn = props.isLogIn;
-    const setToken = props.setToken;
-    const onSubmit = (event) => {
-        const formData = new FormData(event.target);
+const Login = () => {
+    const [username, setUsername] = useState("");
+    const [userPassword, setUserPassword] = useState("");
+    const [isLoggedin, setIsLoggedin] = useState(false);
+
+    const submitLogin = async (event) => {
         event.preventDefault();
-        const userName = formData.get("username");
-        const password = formData.get("password");
-        console.log(formData)
-        const confirmPassword = formData.get("confirmPassword");
-        fetch(`https://strangers-things.herokuapp.com/api/2208-FTB-ET-WEB-FT/users/${isLogIn ? "login" : "register"}`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                user: {
-                    username: userName,
-                    password,
-                },
-            }),
+        try {
+            const token = await userLogin(username, userPassword);
+            if (token) {
+                setUsername("");
+                setUserPassword("");
+                setIsLoggedin(true);
+                alert("You are logged in!")
+            }
         }
-        )
-            .then((response) => response.json())
-            .then((data) => {
-                if (data.success) {
-                    const token = data.data.token;
-                    window.localStorage.setItem("token", token);
-                    setToken(token);
-                    window.location = "/";
-                } else {
-                    setError(data.error.message);
-                }
-            })
-            .catch(console.error);
-    };
+        catch (error) {
+            setUsername("");
+            setUserPass("");
+            alert("Login failed. Make sure you are using the correct username and password.")
+        }
+    }
     return (
         <div>
-            <form onSubmit={onSubmit}>
-                <div className="formGroup">
-                    <label>Username</label>
-                    <input
-                        type="text"
-                        name="username"
-                        required
-                        min={3}
-                        placeholder="Username"
-                    ></input>
-                </div>
-                <div className="formGroup">
-                    <label>password</label>
-                    <input
-                        type="password"
-                        name="password"
-                        required
-                        min={6}
-                        placeholder=" Password"
-                    ></input>
-                </div>
-                <div className="formGroup">
-                    {!isLogIn && <label>Confirm Password</label>}
-                    {!isLogIn && (
-                        <input
-                            type="password"
-                            name="confirmPassword"
-                            required
-                            placeholder="Confirm Password"
-                        ></input>
-                    )}
-                </div>
-                <div className="form-button">
-                    <button>Submit</button>
-                </div>
+            <h1>Login</h1>
+            <form id="login" onSubmit={submitLogin}>
+                <input required type="text" placeholder="Username " value={username} onChange={(event) => {
+                    setUsername(event.target.value)
+                }} />
+                <input required type="password" placeholder="Password " value={userPassword} onChange={(event) => {
+                    setUserPassword(event.target.value)
+                }} />
+                <button type="submit">Enter </button>
             </form>
-            <p>{error}</p>
         </div>
-    );
-};
+    )
+}
 
 export default Login;

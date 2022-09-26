@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { URL_POSTS } from '../api'
 
 const Posts = () => {
     const [userPosts, setUserPosts] = useState([]);
@@ -6,7 +7,7 @@ const Posts = () => {
 
     useEffect(() => {
         const apiRequest = async () => {
-            const response = await fetch('https://strangers-things.herokuapp.com/api/2208-FTB-ET-WEB-FT/posts');
+            const response = await fetch(`${URL_POSTS}`);
             const data = await response.json();
             setUserPosts(data.data.posts)
             console.log(data)
