@@ -4,7 +4,7 @@ import { APP_URL } from '../api'
 const Register = (props) => {
     const [error, setError] = useState();
     const isLoggedIn = props.isLoggedIn;
-    const setToken = props.setToken;
+    // const setToken = props.setToken;
 
     const onSubmit = (event) => {
         const formData = new FormData(event.target);
@@ -31,7 +31,7 @@ const Register = (props) => {
                 if (data.success) {
                     const token = data.data.token;
                     window.localStorage.setItem("token", token);
-                    setToken(token);
+                    // setToken(token);
                     window.location = "/";
                 } else {
                     setError(data.error.message);

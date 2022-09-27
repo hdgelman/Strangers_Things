@@ -18,7 +18,7 @@ const Login = () => {
         }
         catch (error) {
             setUsername("");
-            setUserPass("");
+            setUserPassword("");
             alert("Login failed. Make sure you are using the correct username and password.")
         }
     }
