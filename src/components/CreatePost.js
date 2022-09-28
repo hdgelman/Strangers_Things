@@ -2,19 +2,24 @@ import React, { useState } from "react";
 import { APP_URL } from '../api'
 
 export const createNewPost = async (token, addPost) => {
-    const response = await fetch(`${APP_URL}/posts`, {
-        method: "POST",
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`,
-        },
-        body: JSON.stringify({
-            post: addPost,
-        }),
-    });
-    const result = await response.json();
-    const newPost = result.data.post;
-    return newPost;
+    try {
+        const response = await fetch(`${APP_URL}/posts`, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`,
+            },
+            body: JSON.stringify({
+                post: addPost,
+            }),
+        });
+        const result = await response.json();
+        const newPost = result.data.post;
+        return newPost;
+
+    } catch (error) {
+        alert('Oops, trouble creating post!')
+    }
 }
 
 const CreatePost = () => {

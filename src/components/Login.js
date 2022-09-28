@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { userLogin } from '../api'
 
 const Login = () => {
     const [username, setUsername] = useState("");
@@ -13,13 +14,13 @@ const Login = () => {
                 setUsername("");
                 setUserPassword("");
                 setIsLoggedin(true);
-                alert("You are logged in!")
+                alert('You are logged in!')
             }
         }
         catch (error) {
             setUsername("");
             setUserPassword("");
-            alert("Login failed. Make sure you are using the correct username and password.")
+            alert('Oops, login failed! Make sure you are using the correct username and password.', error)
         }
     }
     return (

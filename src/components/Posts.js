@@ -4,17 +4,22 @@ import { URL_POSTS } from '../api'
 const Posts = () => {
     const [userPosts, setUserPosts] = useState([]);
     const [featuredPost, setFeaturedPost] = useState('')
+    try {
+        useEffect(() => {
+            const apiRequest = async () => {
+                const response = await fetch(`${URL_POSTS}`);
+                const data = await response.json();
+                setUserPosts(data.data.posts)
+                console.log(data)
+            }
 
-    useEffect(() => {
-        const apiRequest = async () => {
-            const response = await fetch(`${URL_POSTS}`);
-            const data = await response.json();
-            setUserPosts(data.data.posts)
-            console.log(data)
-        }
+            apiRequest()
+        }, [])
 
-        apiRequest()
-    }, [])
+    } catch (error) {
+        alert('Oops, trouble fetching the page!', error)
+    }
+
     return (
         <>
             <div>
