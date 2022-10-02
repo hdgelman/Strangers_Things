@@ -24,7 +24,7 @@ const Login = () => {
         }
     }
     return (
-        <div>
+        <div id='login-stuff'>
             <h1>Login</h1>
             <form id="login" onSubmit={submitLogin}>
                 <input required type="text" placeholder="Username " value={username} onChange={(event) => {

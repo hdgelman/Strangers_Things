@@ -40,7 +40,7 @@ const Register = (props) => {
             .catch(console.error);
     };
     return (
-        <div>
+        <div id='register-stuff'>
             <h1>Register</h1>
             <form onSubmit={onSubmit}>
                 <div className="formGroup">

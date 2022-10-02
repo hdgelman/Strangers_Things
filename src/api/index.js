@@ -29,39 +29,15 @@ export const userLogin = async (username, userpass) => {
     return token;
 }
 
+export const getPosts = async () => {
+    fetch(`${URL_POSTS}`)
+        .then(response => response.json())
+        .then(result => {
+            console.log(result)
+        })
+        .catch(console.error)
+}
 
-
-
-// export const getPosts = async () => {
-//     fetch(`${URL_POSTS}`)
-//         .then(response => response.json())
-//         .then(result => {
-//             console.log(result)
-//         })
-//         .catch(console.error)
-// }
-
-// export const callApi = async ({ url, method, token, body }) => {
-//     try {
-//         const options = {
-//             method: method ? method.toUpperCase() : 'GET',
-//             headers: {
-//                 'Content-Type': 'application/json',
-//             },
-//             body: JSON.stringify(body)
-//         };
-//         if (token) options.headers['Authorization'] = `Bearer ${token}`;
-//         const response = await fetch(`${APP_URL}${url}`, options);
-//         const data = await response.json();
-//         if (data.error) {
-//             (data.error);
-//         }
-//         return data;
-//     } catch (error) {
-//         console.error(error)
-//     }
-
-// }
 
 
 

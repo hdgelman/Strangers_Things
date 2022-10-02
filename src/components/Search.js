@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { getPosts } from "../api";
 
 const Search = ({ posts, setPosts, fetchPosts }) => {
     const [searchTerm, setSearchTerm] = useState('');
@@ -8,10 +9,10 @@ const Search = ({ posts, setPosts, fetchPosts }) => {
         return check;
     }
     const handleSubmit = () => {
-        const filteredPosts = post.filter(post => postMatches(post.title.toLowerCase(), searchTerm));
+        const filteredPosts = posts.filter(post => postMatches(post.title.toLowerCase(), searchTerm));
         setPosts(filteredPosts);
         if (!searchTerm.length) {
-            fetchPosts();
+            getPosts();
         }
     }
     return <>

@@ -1,18 +1,24 @@
 
 import { createRoot } from 'react-dom/client'
 import { Header, Message, Posts, CreatePost, Login, Search, Register, Profile } from './components'
+import { BrowserRouter as Router, Route, Link, Routes, BrowserRouter } from 'react-router-dom'
 import { useEffect } from 'react'
 import './style.css'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+
 
 const App = () => {
 
     return (
         <div>
-            <div> <Search /> </div>
-            <div> <Login /> </div>
-            <div> <Register /> </div>
-            <div> <Posts /> </div>
+            <div>
+                <Header />
+            </div>
+            <Routes>
+                <Route path='/Posts' element={<Posts />} />
+                <Route path='/CreatePost' element={<CreatePost />} />
+                <Route path='/Login' element={<Login />} />
+                <Route path='/Register' element={<Register />} />
+            </Routes>
         </div>
     )
 };
@@ -20,5 +26,7 @@ const App = () => {
 const container = document.getElementById('root')
 const root = createRoot(container);
 root.render(
-    <App />
+    <Router>
+        <App />
+    </Router>
 );

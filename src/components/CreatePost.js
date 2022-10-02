@@ -27,17 +27,21 @@ const CreatePost = () => {
     const [description, setdescription] = useState("");
     const [price, setPrice] = useState("");
     const [location, setLocation] = useState("");
-    const [willShip, setWillShip] = useState(false);
     const [willDeliver, setWillDeliver] = useState(false);
 
-    const sumbitNewPost = async (event) => {
+    const submitNewPost = async (event) => {
         event.preventDefault();
-        const token = localStorage.getItem("token")
-        const post = { title, description, price, location, willDeliver, willShip }
+        const token = localStorage.getItem('token')
+        const post = {
+            title: title,
+            description: description,
+            price: price,
+            location: location,
+            willDeliver: willDeliver
+        }
 
-        const displayNewPost = await createNewPost(token, post);
-        alert("Your post has been created!");
-        return displayNewPost
+        const newPost = await createNewPost(token, post);
+        return newPost
     };
 
     const addTitle = (event) => {
@@ -56,18 +60,14 @@ const CreatePost = () => {
         setLocation(event.target.value)
     }
 
-    const addWillShip = (event) => {
-        setWillShip(event.target.value)
-    }
-
     const addWillDeliver = (event) => {
         setWillDeliver(event.target.value)
     }
 
     return (
-        <div>
+        <div id='createpost-stuff'>
             <h1>Add a Post</h1>
-            <form id="newPost" onSubmit={sumbitNewPost}>
+            <form id="newPost" onSubmit={submitNewPost}>
                 <label>Title: </label>
                 <input type="text" id="titleId" name="title" onChange={addTitle} ></input><br></br>
 
@@ -80,20 +80,13 @@ const CreatePost = () => {
                 <label>Location: </label>
                 <input type="text" id="locationId" name="location" onChange={addLocation}></input><br></br>
 
-                <label>Willing to Ship? </label>
-
-                <select name="willShip" id="shipId" onChange={addWillShip}>
-                    <option value="Yes">Yes</option>
-                    <option value="No">No</option>
-                </select>
-
                 <label> Willing to Deliver? </label>
                 <select name="willDeliver" id="deliverId" onChange={addWillDeliver}>
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>
                 </select><br></br>
 
-                <button type="submit" form="newPostForm" value="Submit">Submit</button>
+                <button type="submit" form="newPost" value="Submit">Submit</button>
             </form>
         </div>
     )

@@ -22,13 +22,15 @@ const Posts = () => {
 
     return (
         <>
-            <div>
+            <div id='posts-stuff'>
                 <h1>Posts</h1>
                 <ul>
                     {
                         userPosts.map(post => <li onClick={(setFeaturedPost)} className="post" key={post._id}>
                             <h2>{post.title}</h2>
                             <p>{post.description}</p>
+                            <p>{post.price}</p>
+                            <p>{post.willDeliver}</p>
                         </li>
                         )
                     }

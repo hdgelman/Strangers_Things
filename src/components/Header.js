@@ -1,5 +1,4 @@
 import React from 'react';
-// import './Header.css';
 import { Link } from 'react-router-dom';
 import Login from './Login';
 
@@ -10,10 +9,10 @@ const Header = () => {
             < div >
                 <h1 id='strangers-things'>Stranger's Things </h1>
                 <nav>
-                    <span className='links'>Home </span>
-                    <span className='links'>Posts </span>
-                    <span className='links'>Profile </span>
-                    <span className='links'>Login </span>
+                    <Link to='/Posts'> Posts </Link>
+                    <Link to='/CreatePost'> New Post </Link>
+                    <Link to='/Login'> Login </Link>
+                    <Link to='/Register'> Register </Link>
                 </nav>
             </div >
         </header>
