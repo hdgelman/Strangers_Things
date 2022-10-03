@@ -31,7 +31,6 @@ const Register = (props) => {
                 if (data.success) {
                     const token = data.data.token;
                     window.localStorage.setItem("token", token);
-                    // setToken(token);
                     window.location = "/";
                 } else {
                     setError(data.error.message);

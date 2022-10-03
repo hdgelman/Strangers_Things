@@ -1,5 +1,26 @@
 import React, { useState } from "react";
-import { userLogin } from '../api'
+import { APP_URL } from '../api'
+
+export const userLogin = async (username, userpass) => {
+    const response = await fetch(`${APP_URL}/users/login`, {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            user: {
+                username: username,
+                password: userpass
+            }
+        })
+    });
+    const result = await response.json();
+    const token = result.data.token;
+
+    localStorage.setItem("token", token);
+    localStorage.setItem("username", username)
+    return token;
+}
 
 const Login = () => {
     const [username, setUsername] = useState("");

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Login from './Login';
+import { Search } from '/'
 
 const Header = () => {
 
@@ -14,6 +14,7 @@ const Header = () => {
                     <Link to='/Login'> Login </Link>
                     <Link to='/Register'> Register </Link>
                 </nav>
+                <Search />
             </div >
         </header>
 

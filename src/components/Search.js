@@ -16,7 +16,7 @@ const Search = ({ posts, setPosts, fetchPosts }) => {
         }
     }
     return <>
-        <form className="search-form" onSubmit={(event) => {
+        <form id='search-stuff' className="search-form" onSubmit={(event) => {
             event.preventDefault();
             handleSubmit();
         }}>
